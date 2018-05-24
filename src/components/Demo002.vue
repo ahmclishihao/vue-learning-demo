@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div v-bind:class="{ active: isActive,danger: hasError }">
+    <div v-bind:class="[{active:isActive},hasError?'danger':'static']">
         Message
     </div>
 </div>
@@ -12,16 +12,15 @@ export default{
     data(){
         return {
             isActive:true,
-            hasError:true
+            hasError:1000
         }
     }
 }
-
 </script>
 
 <style>
     .static {
-        color: #00f
+        font-size: 2rem
     }
 
     .active {
