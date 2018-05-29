@@ -1,22 +1,30 @@
-import BaseApi from './BaseApi'
-import axios from 'axios'
+/* eslint-disable */
+import axios from './BaseApi'
+import Qs from 'qs'
 
 /**
- * 获取所有的用户列表
+ * 分页获取用户列表
  */
-function getUserList (func) {
-  axios.get(BaseApi.basePath + '/userList')
-    .then(function (response) {
-      console.log(response)
-      if (func) {
-        func(response.data)
-      }
+function getUserList (pageNum, pageSize) {
+  return axios.get(`/userList?pageNum=${pageNum}&pageSize=${pageSize}`)
+    .catch((error) => {
+      console.log(error)
     })
-    .catch(function (error) {
+}
+
+/**
+ * 添加一个用户
+ * @param user
+ * @returns {Promise<AxiosResponse<any>>}
+ */
+function addUser (user) {
+  return axios.post('/addUser',Qs.stringify(user))
+    .catch((error) => {
       console.log(error)
     })
 }
 
 export default {
-  getUserList: getUserList
+  getUserList: getUserList,
+  addUser: addUser
 }

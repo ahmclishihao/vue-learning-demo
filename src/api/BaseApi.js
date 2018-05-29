@@ -1,6 +1,9 @@
-// api基址
-const basePath = 'http://127.0.0.1:8181'
+/* eslint-disable */
+import axios from 'axios'
 
-export default {
-  basePath: basePath
-}
+// api基址
+const basePath = 'http://192.168.1.144:8181'
+
+axios.defaults.baseURL = basePath
+
+export default axios
